@@ -24,7 +24,7 @@ const babelDir = path.join(process.cwd(), '.webpack-cache/babel')
 
 process.noDeprecation = true
 
-fs.emptyDirSync(path.join(process.cwd(), 'assets'))
+//fs.emptyDirSync(path.join(process.cwd(), 'assets'))
 
 module.exports = {
   mode: 'production',
