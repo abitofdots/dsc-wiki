@@ -4,10 +4,13 @@
       .login-sd
         .d-flex.mb-5
           .login-logo
-            v-avatar(tile, size='34')
-              v-img(:src='logoUrl')
-          .login-title
-            .text-h6.grey--text.text--darken-4 {{ siteTitle }}
+            v-avatar(cover, size='1')
+            v-img(:src='logoEyeUrl')
+        template
+          .login-logo
+            .white--text
+            v-avatar(cover, size='34')
+            v-img(:src='logoAsciiUrl')
         v-alert.mb-0(
           v-model='errorShown'
           transition='slide-y-reverse-transition'
@@ -22,10 +25,11 @@
         //- PROVIDERS LIST
         //-------------------------------------------------
         template(v-if='screen === `login` && strategies.length > 1')
-          .login-subtitle
-            .text-subtitle-1 {{$t('auth:selectAuthProvider')}}
+          //.login-subtitle
+          //.text-subtitle-1 {{$t('auth:selectAuthProvider')}}
+          //.text-subtitle-1 WELCOME
           .login-list
-            v-list.elevation-1.radius-7(nav, light)
+            v-list.elevation-1.radius-7.black(nav, light)
               v-list-item-group(v-model='selectedStrategyKey')
                 v-list-item(
                   v-for='(stg, idx) of filteredStrategies'
@@ -33,8 +37,9 @@
                   :value='stg.key'
                   :color='stg.strategy.color'
                   )
-                  v-avatar.mr-3(tile, size='24', v-html='stg.strategy.icon')
-                  span.text-none {{stg.displayName}}
+                  v-avatar.mr-3(tile, size='0', v-html='stg.strategy.icon')
+                  //span.text-none {{stg.displayName}}
+                  span.text-none {{"- "}}LOGIN{{" -"}}
         //-------------------------------------------------
         //- LOGIN FORM
         //-------------------------------------------------
@@ -46,8 +51,8 @@
               solo
               flat
               prepend-inner-icon='mdi-clipboard-account'
-              background-color='white'
-              color='blue darken-2'
+              background-color='black'
+              color='white'
               hide-details
               ref='iptEmail'
               v-model='username'
@@ -60,8 +65,8 @@
               solo
               flat
               prepend-inner-icon='mdi-form-textbox-password'
-              background-color='white'
-              color='blue darken-2'
+              background-color='black'
+              color='white'
               hide-details
               ref='iptPassword'
               v-model='password'
@@ -76,7 +81,7 @@
             v-btn.mt-2.text-none(
               width='100%'
               large
-              color='blue darken-2'
+              color='white'
               dark
               @click='login'
               :loading='isLoading'
@@ -85,13 +90,13 @@
               v-btn.text-none(
                 text
                 rounded
-                color='grey darken-3'
+                color='white'
                 @click.stop.prevent='forgotPassword'
                 href='#forgot'
                 ): .caption {{ $t('auth:forgotPasswordLink') }}
               v-btn.text-none(
                 v-if='selectedStrategyKey === `local` && selectedStrategy.selfRegistration'
-                color='indigo darken-2'
+                color='white'
                 text
                 rounded
                 href='/register'
@@ -101,15 +106,15 @@
         //-------------------------------------------------
         template(v-if='screen === `forgot`')
           .login-subtitle
-            .text-subtitle-1 {{$t('auth:forgotPasswordTitle')}}
+            .text-subtitle-1.text-black {{$t('auth:forgotPasswordTitle')}}
           .login-info {{ $t('auth:forgotPasswordSubtitle') }}
           .login-form
             v-text-field(
               solo
               flat
               prepend-inner-icon='mdi-clipboard-account'
-              background-color='white'
-              color='blue darken-2'
+              background-color='black'
+              color='white'
               hide-details
               ref='iptForgotPwdEmail'
               v-model='username'
@@ -121,7 +126,7 @@
             v-btn.mt-2.text-none(
               width='100%'
               large
-              color='blue darken-2'
+              color='black'
               dark
               @click='forgotPasswordSubmit'
               :loading='isLoading'
@@ -147,7 +152,7 @@
               flat
               prepend-inner-icon='mdi-form-textbox-password'
               background-color='white'
-              color='blue darken-2'
+              color='white'
               hide-details
               ref='iptNewPassword'
               v-model='newPassword'
@@ -162,7 +167,7 @@
               flat
               prepend-inner-icon='mdi-form-textbox-password'
               background-color='white'
-              color='blue darken-2'
+              color='white'
               hide-details
               v-model='newPasswordVerify'
               :placeholder='$t(`auth:changePwd.newPasswordVerifyPlaceholder`)'
@@ -173,7 +178,7 @@
             v-btn.mt-2.text-none(
               width='100%'
               large
-              color='blue darken-2'
+              color='white'
               dark
               @click='changePassword'
               :loading='isLoading'
@@ -191,7 +196,7 @@
             solo
             flat
             background-color='white'
-            color='blue darken-2'
+            color='white'
             hide-details
             ref='iptTFA'
             v-model='securityCode'
@@ -203,7 +208,7 @@
           v-btn.mt-2.text-none(
             width='100%'
             large
-            color='blue darken-2'
+            color='white'
             dark
             @click='verifySecurityCode(false)'
             :loading='isLoading'
@@ -225,7 +230,7 @@
             solo
             flat
             background-color='white'
-            color='blue darken-2'
+            color='red darken-3'
             hide-details
             ref='iptTFASetup'
             v-model='securityCode'
@@ -237,7 +242,7 @@
           v-btn.mt-2.text-none(
             width='100%'
             large
-            color='blue darken-2'
+            color='white'
             dark
             @click='verifySecurityCode(true)'
             :loading='isLoading'
@@ -266,7 +271,7 @@ export default {
     },
     hideLocal: {
       type: Boolean,
-      default: false
+      default: true
     },
     changePwdContinuationToken: {
       type: String,
@@ -306,7 +311,9 @@ export default {
     isSocialShown () {
       return this.strategies.length > 1
     },
-    logoUrl () { return siteConfig.logoUrl },
+    // logoUrl () { return siteConfig.logoUrl },
+    logoAsciiUrl () { return 'https://storage.googleapis.com/dsc-sample/dbeAscii.png' },
+    logoEyeUrl () { return 'https://storage.googleapis.com/dsc-sample/eyeRight.png' },
     filteredStrategies () {
       const qParams = new URLSearchParams(window.location.search)
       if (this.hideLocal && !qParams.has('all')) {
@@ -691,26 +698,36 @@ export default {
 </script>
 
 <style lang="scss">
+  .text-none {
+    color : #ffffff!important;
+    margin-left : 21%
+  }
   .login {
     // background-image: url('/_assets/img/splash/1.jpg');
-    background-color: mc('grey', '900');
+    // background-color: mc('grey', '900');
+    background-color: rgba(0,0,0,.8);
     background-size: cover;
     background-position: center center;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &-sd {
-      background-color: rgba(255,255,255,.8);
+      background-color: rgba(0,0,0,.8);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-left: 1px solid rgba(255,255,255,.85);
-      border-right: 1px solid rgba(255,255,255,.85);
-      width: 450px;
-      height: 100%;
-      margin-left: 5vw;
+      //border: 1px solid rgba(255,255,255,.85);
+      //border-left: 1px solid rgba(255,255,255,.85);
+      //border-right: 1px solid rgba(255,255,255,.85);
+      width: 210px;
+      //height: 70%;
+      height: 450px;
+      margin-top : 1vw;
 
       @at-root .no-backdropfilter & {
-        background-color: rgba(255,255,255,.95);
+        background-color: rgba(0,0,0,.8);
       }
 
       @include until($tablet) {
@@ -720,13 +737,13 @@ export default {
     }
 
     &-logo {
-      padding: 12px 0 0 12px;
-      width: 58px;
-      height: 58px;
-      background-color: #222;
-      margin-left: 12px;
-      border-bottom-left-radius: 7px;
-      border-bottom-right-radius: 7px;
+      //padding: 12px 0 0 12px;
+      width: 120px;
+      height: 120px;
+      //background-color: #222;
+      margin-left: 21%;
+      //border-bottom-left-radius: 7px;
+      //border-bottom-right-radius: 7px;
     }
 
     &-title {
@@ -739,9 +756,9 @@ export default {
 
     &-subtitle {
       padding: 24px 12px 12px 12px;
-      color: #111;
+      color: #ffffff;
       font-weight: 500;
-      text-shadow: 1px 1px rgba(255,255,255,.5);
+      //text-shadow: 1px 1px rgba(255,255,255,.5);
       background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.15));
       text-align: center;
       border-bottom: 1px solid rgba(0,0,0,.3);
@@ -758,13 +775,14 @@ export default {
     }
 
     &-list {
-      border-top: 1px solid rgba(255,255,255,.85);
+      border-top: 1px dashed rgba(255,255,255,.85);
       padding: 12px;
+      align-content: center;
     }
 
     &-form {
       padding: 12px;
-      border-top: 1px solid rgba(255,255,255,.85);
+      //border-top: 1px dashed rgba(255,255,255,.85);
     }
 
     &-main {

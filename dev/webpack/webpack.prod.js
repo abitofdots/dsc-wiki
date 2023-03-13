@@ -5,8 +5,8 @@ const yargs = require('yargs').argv
 const _ = require('lodash')
 
 const { VueLoaderPlugin } = require('vue-loader')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -24,7 +24,7 @@ const babelDir = path.join(process.cwd(), '.webpack-cache/babel')
 
 process.noDeprecation = true
 
-fs.emptyDirSync(path.join(process.cwd(), 'assets'))
+// fs.emptyDirSync(path.join(process.cwd(), 'assets'))
 
 module.exports = {
   mode: 'production',
@@ -197,12 +197,12 @@ module.exports = {
       startYear: 2017,
       endYear: (new Date().getFullYear()) + 5
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'client/static' },
-        { from: './node_modules/prismjs/components', to: 'js/prism' }
-      ]
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     { from: 'client/static' },
+    //     { from: './node_modules/prismjs/components', to: 'js/prism' }
+    //   ]
+    // }),
     new MiniCssExtractPlugin({
       filename: 'css/bundle.[hash].css',
       chunkFilename: 'css/[name].[chunkhash].css'
@@ -236,7 +236,7 @@ module.exports = {
     new WebpackBarPlugin({
       name: 'Client Assets'
     }),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new OptimizeCssAssetsPlugin({
       cssProcessorOptions: { discardComments: { removeAll: true } },
       canPrint: true

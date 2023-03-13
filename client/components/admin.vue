@@ -245,7 +245,8 @@ export default {
 
 .admin {
   &.theme--light .application--wrap {
-    background-color: lighten(mc('grey', '200'), 2%);
+    //background-color: lighten(mc('grey', '200'), 2%);
+    background-color: rgba(0,0,0,.8);
   }
 }
 

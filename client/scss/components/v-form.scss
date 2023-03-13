@@ -1,7 +1,8 @@
 .wiki-form {
 
   &.theme--light {
-    background-color: mc('grey', '50');
+    //background-color: mc('grey', '50');
+    background-color: rgba(0,0,0,.8);
   }
 
   .v-text-field--outline {

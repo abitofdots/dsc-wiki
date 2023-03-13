@@ -397,6 +397,7 @@ Thank you to all our patrons! 🙏 [[Become a patron](https://www.patreon.com/re
 - djagoo
 - dz
 - Douglas Lassance
+- Ergoflix
 - Ernie Reid
 - Etienne
 - Flemis Jurgenheimer
@@ -420,6 +421,7 @@ Thank you to all our patrons! 🙏 [[Become a patron](https://www.patreon.com/re
 - Mads Rosendahl
 - Mark Mansur
 - Matt Gedigian
+- Mike Ditton
 - Nate Figz
 - Patryk
 - Philipp Schürch

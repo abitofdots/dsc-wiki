@@ -1181,8 +1181,9 @@
   }
 
   &-main {
-    background-color: mc('blue-grey', '50');
-    border-radius: 0 0 7px 7px;
+    background-color: #40444B;
+    // border-radius: 0 0 7px 7px;
+    //border: 1px solid #ffffff;
     padding: 20px;
 
     @at-root .theme--dark & {

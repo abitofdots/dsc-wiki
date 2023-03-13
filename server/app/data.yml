@@ -63,7 +63,7 @@ defaults:
     auth:
       autoLogin: false
       enforce2FA: false
-      hideLocal: false
+      hideLocal: true
       loginBgUrl: ''
       audience: 'urn:wiki.js'
       tokenExpiration: '30m'
