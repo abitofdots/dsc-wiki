@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
 
 <img src="https://static.requarks.io/logo/wikijs-full.svg" alt="Wiki.js" width="600" />
@@ -478,3 +479,6 @@ This project exists thanks to all the people who contribute. [[Contribute]](http
 
 ![Porkbun](https://static.requarks.io/logo/porkbun.png)  
 [Porkbun](https://www.porkbun.com) for providing domain registration services.
+=======
+wiki for dsc's fiction.
+>>>>>>> 791f4768504ede3b896f806af0657d54bb34f751
